@@ -1,0 +1,11 @@
+services:
+  business-service:
+    build:
+      dockerfile: business-service/Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - proximity-service-network
+networks:
+  proximity-service-network:
+    driver: bridge
