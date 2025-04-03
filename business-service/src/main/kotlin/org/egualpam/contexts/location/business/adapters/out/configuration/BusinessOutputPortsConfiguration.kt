@@ -1,8 +1,8 @@
 package org.egualpam.contexts.location.business.adapters.out.configuration
 
-import org.egualpam.contexts.location.business.adapters.out.repository.PostgreSQLRepository
+import org.egualpam.contexts.location.business.adapters.out.repository.PostgreSQLBusinessRepository
 import org.egualpam.contexts.location.business.adapters.out.searchrepository.PostgreSQLSearchRepository
-import org.egualpam.contexts.location.business.application.ports.out.Repository
+import org.egualpam.contexts.location.business.application.ports.out.BusinessRepository
 import org.egualpam.contexts.location.business.application.ports.out.SearchRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -19,5 +19,5 @@ class BusinessOutputPortsConfiguration {
   @Bean
   fun repository(
     jdbcTemplate: NamedParameterJdbcTemplate
-  ): Repository = PostgreSQLRepository(jdbcTemplate)
+  ): BusinessRepository = PostgreSQLBusinessRepository(jdbcTemplate)
 }

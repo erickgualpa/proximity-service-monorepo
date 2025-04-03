@@ -1,10 +1,10 @@
 package org.egualpam.contexts.location.business.application.ports.`in`.command
 
 import org.egualpam.contexts.location.business.application.domain.Business
-import org.egualpam.contexts.location.business.application.ports.out.Repository
+import org.egualpam.contexts.location.business.application.ports.out.BusinessRepository
 
 class CreateBusiness(
-  private val repository: Repository
+  private val repository: BusinessRepository
 ) {
   fun execute(command: CreateBusinessCommand) {
     command.let {

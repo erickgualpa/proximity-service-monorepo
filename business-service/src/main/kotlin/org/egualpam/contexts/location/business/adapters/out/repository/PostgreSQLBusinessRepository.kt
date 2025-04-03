@@ -1,14 +1,14 @@
 package org.egualpam.contexts.location.business.adapters.out.repository
 
 import org.egualpam.contexts.location.business.application.domain.Business
-import org.egualpam.contexts.location.business.application.ports.out.Repository
+import org.egualpam.contexts.location.business.application.ports.out.BusinessRepository
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import java.util.UUID
 
-class PostgreSQLRepository(
+class PostgreSQLBusinessRepository(
   private val jdbcTemplate: NamedParameterJdbcTemplate
-) : Repository {
+) : BusinessRepository {
 
   override fun find(id: String): Business? {
     TODO()
