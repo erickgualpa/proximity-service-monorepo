@@ -1,21 +1,23 @@
 package org.egualpam.contexts.location.business.application.ports.`in`.query
 
-class RetrieveBusiness {
+import org.egualpam.contexts.location.business.application.ports.out.SearchRepository
+
+class RetrieveBusiness(
+  private val searchRepository: SearchRepository
+) {
 
   fun execute(query: RetrieveBusinessQuery): BusinessDto {
-    return BusinessDto(
-        query.id,
-        address = "123 Market Street",
-        city = "San Francisco",
-        state = "CA",
-        country = "USA",
-        latitude = "37.7749",
-        longitude = "-122.4194",
-    )
+    return query.id.let {
+      searchRepository.find(it)
+    }
   }
 }
 
 data class RetrieveBusinessQuery(val id: String)
+
+data class SearchResults(
+  val results: List<BusinessDto>
+)
 
 data class BusinessDto(
   val id: String,
