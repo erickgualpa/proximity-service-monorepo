@@ -1,5 +1,5 @@
 spring:
   datasource:
-    url: jdbc:postgresql://host.docker.internal:5432/business_db
+    url: jdbc:postgresql://business-service-db:5432/business_db
     username: business-service-user
     password: business-service-password
