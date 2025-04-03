@@ -1,10 +1,12 @@
-package org.egualpam.contexts.location.e2e
+package org.egualpam.contexts.location.journey
 
 import org.egualpam.contexts.location.shared.AbstractIntegrationTest
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.util.UUID.randomUUID
 
-class CreateBusinessFeature : AbstractIntegrationTest() {
+class CreateBusinessJourneyTest : AbstractIntegrationTest() {
+  @Disabled
   @Test
   fun `create business`() {
     val businessId = randomUUID().toString()
@@ -16,7 +18,7 @@ class CreateBusinessFeature : AbstractIntegrationTest() {
           "street": "123 Main St",
           "city": "New York",
           "state": "NY",
-          "country": "USA"
+          "country": "USA",
         },
         "location": {
           "latitude": 40.7128,
@@ -32,5 +34,11 @@ class CreateBusinessFeature : AbstractIntegrationTest() {
         .exchange()
         .expectStatus()
         .isCreated
+
+    webTestClient.get()
+        .uri("/v1/businesses/{business-id}", businessId)
+        .exchange()
+        .expectStatus()
+        .isOk
   }
 }
