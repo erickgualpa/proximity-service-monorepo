@@ -4,6 +4,6 @@ import org.egualpam.contexts.location.business.application.ports.`in`.query.Busi
 import org.egualpam.contexts.location.business.application.ports.`in`.query.SearchResults
 
 interface SearchRepository {
-  fun find(id: String): BusinessDto
+  fun find(id: String): BusinessDto?
   fun search(): SearchResults
 }

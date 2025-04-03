@@ -8,10 +8,11 @@ class RetrieveBusiness(
 
   fun execute(query: RetrieveBusinessQuery): BusinessDto {
     return query.id.let {
-      searchRepository.find(it)
+      searchRepository.find(it) ?: throw BusinessNotExits(it)
     }
   }
 }
+
 
 data class RetrieveBusinessQuery(val id: String)
 
@@ -28,3 +29,5 @@ data class BusinessDto(
   val latitude: String,
   val longitude: String
 )
+
+class BusinessNotExits(id: String) : RuntimeException("Business with id [$id] does not exist")

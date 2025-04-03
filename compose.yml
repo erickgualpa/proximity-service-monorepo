@@ -1,4 +1,14 @@
 services:
+  business-service-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: business-service-user
+      POSTGRES_PASSWORD: business-service-password
+      POSTGRES_DB: business_db
+    ports:
+      - 5432:5432
+    networks:
+      - proximity-service-network
   business-service:
     build:
       dockerfile: business-service/Dockerfile
