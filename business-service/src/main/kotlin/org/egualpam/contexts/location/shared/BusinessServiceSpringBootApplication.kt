@@ -5,6 +5,7 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication(
     scanBasePackages = [
+      "org.egualpam.contexts.location.business.adapters.in.configuration",
       "org.egualpam.contexts.location.business.adapters.in.controllers",
     ],
 )
