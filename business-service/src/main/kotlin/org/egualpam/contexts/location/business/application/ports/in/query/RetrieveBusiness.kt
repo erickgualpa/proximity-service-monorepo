@@ -1,9 +1,9 @@
 package org.egualpam.contexts.location.business.application.ports.`in`.query
 
-import org.egualpam.contexts.location.business.application.ports.out.SearchRepository
+import org.egualpam.contexts.location.business.application.ports.out.BusinessSearchRepository
 
 class RetrieveBusiness(
-  private val searchRepository: SearchRepository
+  private val searchRepository: BusinessSearchRepository
 ) {
 
   fun execute(query: RetrieveBusinessQuery): BusinessDto {
