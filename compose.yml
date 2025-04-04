@@ -29,17 +29,6 @@ services:
     networks:
       - proximity-service-network
 
-  init-businesses:
-    image: curlimages/curl:latest
-    volumes:
-      - ./init-businesses.sh:/init.sh:ro
-    entrypoint: [ "sh", "/init.sh" ]
-    depends_on:
-      - business-service
-    networks:
-      - proximity-service-network
-
-
 networks:
   proximity-service-network:
     driver: bridge
