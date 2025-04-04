@@ -1,5 +1,6 @@
 package org.egualpam.contexts.location.shared
 
+import org.egualpam.contexts.location.e2e.helper.CreateTestBusiness
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection
@@ -17,9 +18,10 @@ abstract class AbstractIntegrationTest {
   @Autowired
   protected lateinit var webTestClient: WebTestClient
 
-  companion object {
+  @Autowired
+  protected lateinit var createTestBusiness: CreateTestBusiness
 
-    const val TEST_ID = "6c485d83-4071-40a3-af25-cdfe8c5b7f1f"
+  companion object {
 
     @ServiceConnection
     private val postgreSQLContainer = PostgreSQLContainer("postgres:latest")
