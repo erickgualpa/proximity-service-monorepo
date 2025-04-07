@@ -6,6 +6,7 @@ import org.egualpam.contexts.location.business.application.ports.`in`.query.Retr
 import org.egualpam.contexts.location.business.application.ports.out.BusinessRepository
 import org.egualpam.contexts.location.business.application.ports.out.BusinessSearchRepository
 import org.springframework.beans.factory.InitializingBean
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.transaction.support.TransactionTemplate
@@ -24,6 +25,7 @@ class BusinessInputPortsConfiguration {
   ) = CreateBusiness(businessRepository)
 
   @Bean
+  @ConditionalOnProperty(name = ["business-initializer.enabled"], havingValue = "true")
   fun businessInitializer(
     transactionTemplate: TransactionTemplate,
     createBusiness: CreateBusiness

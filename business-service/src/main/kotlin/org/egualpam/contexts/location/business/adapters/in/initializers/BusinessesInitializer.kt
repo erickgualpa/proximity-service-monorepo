@@ -11,7 +11,7 @@ class BusinessesInitializer(
   private val createBusiness: CreateBusiness
 ) : InitializingBean {
   override fun afterPropertiesSet() {
-    repeat(10) {
+    repeat(100_000) {
       val command = CreateBusinessCommand(
           id = randomUUID().toString(),
           addressStreet = "Address $it",

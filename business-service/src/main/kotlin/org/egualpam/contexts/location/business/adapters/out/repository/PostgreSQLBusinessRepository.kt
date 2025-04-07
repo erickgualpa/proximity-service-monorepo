@@ -2,8 +2,6 @@ package org.egualpam.contexts.location.business.adapters.out.repository
 
 import org.egualpam.contexts.location.business.application.domain.Business
 import org.egualpam.contexts.location.business.application.ports.out.BusinessRepository
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory.getLogger
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import java.util.UUID
@@ -11,8 +9,6 @@ import java.util.UUID
 class PostgreSQLBusinessRepository(
   private val jdbcTemplate: NamedParameterJdbcTemplate
 ) : BusinessRepository {
-
-  private val logger: Logger = getLogger(this::class.java)
 
   override fun find(id: String): Business? {
     TODO()
@@ -42,7 +38,5 @@ class PostgreSQLBusinessRepository(
         .addValue("longitude", business.locationLongitude())
 
     jdbcTemplate.update(sql, params)
-
-    logger.info("Business saved with id: ${business.id()}")
   }
 }
