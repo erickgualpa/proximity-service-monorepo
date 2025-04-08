@@ -17,5 +17,6 @@
 
     <modules>
         <module>business-service</module>
+        <module>business-location-service</module>
     </modules>
 </project>
