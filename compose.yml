@@ -29,6 +29,14 @@ services:
     networks:
       - proximity-service-network
 
+  business-location-service:
+    build:
+      dockerfile: business-location-service/Dockerfile
+    ports:
+      - 8080
+    networks:
+      - proximity-service-network
+
 networks:
   proximity-service-network:
     driver: bridge
