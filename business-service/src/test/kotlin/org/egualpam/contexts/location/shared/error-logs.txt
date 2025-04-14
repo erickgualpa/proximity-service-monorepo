@@ -1,0 +1,42 @@
+2025-04-14 22:20:28 ===> User
+2025-04-14 22:20:28 uid=1000(appuser) gid=1000(appuser) groups=1000(appuser)
+2025-04-14 22:20:28 ===> Configuring ...
+2025-04-14 22:20:30 ===> Running preflight checks ...
+2025-04-14 22:20:30 ===> Check if Kafka is healthy ...
+2025-04-14 22:21:10 Error while getting broker list.
+2025-04-14 22:21:10 java.util.concurrent.ExecutionException: org.apache.kafka.common.errors.TimeoutException: Timed out waiting for a node assignment. Call: listNodes
+2025-04-14 22:21:10     at java.base/java.util.concurrent.CompletableFuture.reportGet(Unknown Source)
+2025-04-14 22:21:10     at java.base/java.util.concurrent.CompletableFuture.get(Unknown Source)
+2025-04-14 22:21:10     at org.apache.kafka.common.internals.KafkaFutureImpl.get(KafkaFutureImpl.java:165)
+2025-04-14 22:21:10     at io.confluent.admin.utils.ClusterStatus.isKafkaReady(ClusterStatus.java:147)
+2025-04-14 22:21:10     at io.confluent.admin.utils.cli.KafkaReadyCommand.main(KafkaReadyCommand.java:149)
+2025-04-14 22:21:10 Caused by: org.apache.kafka.common.errors.TimeoutException: Timed out waiting for a node assignment. Call: listNodes
+2025-04-14 22:21:11 Expected 1 brokers but found only 0. Trying to query Kafka for metadata again ...
+2025-04-14 22:21:11 Expected 1 brokers but found only 0. Brokers found [].
+2025-04-14 22:21:11 Using log4j config /etc/cp-base-new/log4j.properties
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

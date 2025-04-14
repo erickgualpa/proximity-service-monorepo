@@ -38,7 +38,7 @@ class CreateBusinessFeature : AbstractIntegrationTest() {
 
     await().atMost(10, SECONDS)
         .untilAsserted {
-          val events = consumeDomainEvents.from("public.business")
+          val events = consumeDomainEvents.all()
           assertThat(events).hasSize(1)
         }
   }

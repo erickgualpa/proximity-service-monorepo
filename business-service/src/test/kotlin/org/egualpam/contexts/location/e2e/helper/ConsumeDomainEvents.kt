@@ -1,14 +1,20 @@
 package org.egualpam.contexts.location.e2e.helper
 
-import java.util.UUID.randomUUID
+import org.springframework.kafka.annotation.KafkaListener
 
 class ConsumeDomainEvents {
-  fun from(topicName: String): List<String> {
-    val event = """
-    {
-      "id": "${randomUUID()}",
-    }
-    """.trimIndent()
-    return listOf(event)
+
+  private val events = mutableListOf<String>()
+
+  @KafkaListener(
+      topics = ["public.event_store"],
+      groupId = "business-service",
+  )
+  fun consume(message: String) {
+    events.add(message)
+  }
+
+  fun all(): List<String> {
+    return events.toList()
   }
 }
