@@ -21,6 +21,13 @@
 ./build_and_deploy.sh
 ```
 
+Run Gatling simulations
+<br>
+
+```shell script
+./mvnw -f proximity-service-gatling gatling:test
+```
+
 💤 Clear service containers
 
 ```shell script
