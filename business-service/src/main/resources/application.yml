@@ -5,3 +5,11 @@ spring:
     password: business-service-password
 business-initializer:
   enabled: true
+kafka-connect:
+  debezium:
+    host: business-service-debezium
+    port: 8083
+    user: debezium_user
+    password: dbz
+    database-host: business-service-db
+    database-name: business_db

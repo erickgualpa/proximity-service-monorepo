@@ -12,18 +12,26 @@ class CreateBusinessFeature : AbstractIntegrationTest() {
   fun `create business`() {
     val businessId = randomUUID().toString()
 
+    val addressCity = "New York"
+    val addressStreet = "123 Main St"
+    val addressState = "NY"
+    val addressCountry = "USA"
+
+    val locationLatitude = 40.7128
+    val locationLongitude = -74.0060
+
     val request = """
       {
         "id": "$businessId",
         "address": {
-          "street": "123 Main St",
-          "city": "New York",
-          "state": "NY",
-          "country": "USA"
+          "street": "$addressStreet",
+          "city": "$addressCity",
+          "state": "$addressState",
+          "country": "$addressCountry"
         },
         "location": {
-          "latitude": 40.7128,
-          "longitude": -74.0060
+          "latitude": $locationLatitude,
+          "longitude": $locationLongitude
         }
       }
     """.trimIndent()
@@ -38,8 +46,23 @@ class CreateBusinessFeature : AbstractIntegrationTest() {
 
     await().atMost(10, SECONDS)
         .untilAsserted {
-          val events = consumeDomainEvents.from("public.business")
-          assertThat(events).hasSize(1)
+          val events = consumeDomainEvents.all()
+          assertThat(events).anySatisfy {
+            assertThat(it.type).isEqualTo("BusinessCreated")
+            assertThat(it.version).isEqualTo("1.0")
+            assertThat(it.entityId).isEqualTo(businessId)
+
+            assertThat(it.data).containsExactlyInAnyOrderEntriesOf(
+                mapOf(
+                    "addressCity" to addressCity,
+                    "addressCountry" to addressCountry,
+                    "addressState" to addressState,
+                    "addressStreet" to addressStreet,
+                    "locationLatitude" to locationLatitude,
+                    "locationLongitude" to locationLongitude,
+                ),
+            )
+          }
         }
   }
 }

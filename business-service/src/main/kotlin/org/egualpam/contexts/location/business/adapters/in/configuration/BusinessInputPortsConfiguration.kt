@@ -5,6 +5,7 @@ import org.egualpam.contexts.location.business.application.ports.`in`.command.Cr
 import org.egualpam.contexts.location.business.application.ports.`in`.query.RetrieveBusiness
 import org.egualpam.contexts.location.business.application.ports.out.BusinessRepository
 import org.egualpam.contexts.location.business.application.ports.out.BusinessSearchRepository
+import org.egualpam.contexts.location.shared.application.ports.out.EventBus
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean
@@ -21,8 +22,9 @@ class BusinessInputPortsConfiguration {
 
   @Bean
   fun createBusiness(
-    businessRepository: BusinessRepository
-  ) = CreateBusiness(businessRepository)
+    businessRepository: BusinessRepository,
+    eventBus: EventBus
+  ) = CreateBusiness(businessRepository, eventBus)
 
   @Bean
   @ConditionalOnProperty(name = ["business-initializer.enabled"], havingValue = "true")

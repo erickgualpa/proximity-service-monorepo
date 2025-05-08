@@ -1,10 +1,27 @@
 package org.egualpam.contexts.location.business.application.domain
 
+import org.egualpam.contexts.location.shared.application.domain.DomainEvent
+import org.egualpam.contexts.location.shared.application.domain.DomainEventId
+import org.egualpam.contexts.location.shared.application.domain.EntityId
+
+class BusinessCreated(
+  id: DomainEventId,
+  businessId: EntityId,
+  val addressStreet: String,
+  val addressCity: String,
+  val addressState: String,
+  val addressCountry: String,
+  val locationLatitude: Double,
+  val locationLongitude: Double
+) : DomainEvent(id, businessId)
+
 class Business(
-  private val id: BusinessId,
+  private val id: EntityId,
   private val address: Address,
   private val location: Location,
 ) {
+
+  private val domainEvents = mutableSetOf<DomainEvent>()
 
   companion object {
     fun create(
@@ -16,13 +33,29 @@ class Business(
       locationLatitude: Double,
       locationLongitude: Double,
     ): Business {
-      return Business(
-          id = BusinessId(id),
+      val business = Business(
+          id = EntityId(id),
           address = Address(addressStreet, addressCity, addressState, addressCountry),
           location = Location(locationLatitude, locationLongitude),
       )
+
+      val event = BusinessCreated(
+          id = DomainEventId.generate(),
+          business.id,
+          addressStreet = business.address.street,
+          addressCity = business.address.city,
+          addressState = business.address.state,
+          addressCountry = business.address.country,
+          locationLatitude = business.location.latitude,
+          locationLongitude = business.location.longitude,
+      )
+      business.domainEvents.add(event)
+
+      return business
     }
   }
+
+  fun domainEvents() = domainEvents.toSet()
 
   fun id() = id.value
   fun addressStreet() = address.street
