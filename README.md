@@ -21,7 +21,7 @@
 ./build_and_deploy.sh
 ```
 
-Run Gatling simulations
+🌀 Run Gatling simulations
 <br>
 
 ```shell script
