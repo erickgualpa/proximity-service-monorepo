@@ -25,7 +25,7 @@
 <br>
 
 ```shell script
-./mvnw -f proximity-service-gatling gatling:test
+./mvnw -f proximity-service-gatling/pom.xml gatling:test
 ```
 
 💤 Clear service containers
